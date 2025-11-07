@@ -20,7 +20,7 @@ public class BackstagePassUpdater extends Updater {
         if(item.sellIn < CRITICAL_URGENCY_LIMIT ) {
             increment = 3;
         }
-        if (item.sellIn == -1) {
+        if (item.sellIn < 0) {
            item.quality = 0;
         } else {
             item.quality = Math.min(50, item.quality + increment);

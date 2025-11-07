@@ -13,7 +13,7 @@ import java.util.List;
 public class UpdaterFactory {
 
     private final List<Updater> updaters = new ArrayList<>();
-    private Updater defaultUpdater = new DefaultUpdater();
+    private final Updater defaultUpdater;
 
     public UpdaterFactory() {
         defaultUpdater = new DefaultUpdater();

@@ -5,7 +5,7 @@ import com.gildedrose.Item;
 public class ConjuredUpdater extends Updater {
 
     public ConjuredUpdater() {
-        super("Conjured");
+        super("Conjured Mana Cake");
     }
     @Override
     public void update(Item item) {

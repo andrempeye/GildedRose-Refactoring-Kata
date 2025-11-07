@@ -13,6 +13,8 @@ public class AgedBrieUpdater extends Updater {
     @Override
     public void update(Item item) {
         item.sellIn-=1;
-        item.quality = Math.min(MAX_QUALITY, item.quality + 1);
+        int increment = item.sellIn < 0 ? 2 : 1;
+        item.quality = Math.min(MAX_QUALITY, item.quality + increment);
+
     }
 }
