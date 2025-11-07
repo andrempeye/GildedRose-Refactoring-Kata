@@ -22,7 +22,7 @@ public class UpdaterFactory {
         updaters.add(new BackstagePassUpdater());
         updaters.add(new ConjuredUpdater());
     }
-    public Updater forName(String name) {
-        return updaters.stream().filter(u -> u.matches(name)).findAny().orElse(defaultUpdater);
+    public Updater forItem(Item item) {
+        return updaters.stream().filter(u -> u.matches(item.name)).findAny().orElse(defaultUpdater);
     }
 }

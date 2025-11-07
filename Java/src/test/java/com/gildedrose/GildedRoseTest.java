@@ -3,6 +3,7 @@ package com.gildedrose;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class GildedRoseTest {
 
@@ -99,12 +100,12 @@ class GildedRoseTest {
         assertEquals(80, app.items[0].quality);
     }
 
-//    @Test
-//    void updateQuality_SulfurasNotAt80_throwsException() {
-//        Item[] items = new Item[] {SULFURAS_79};
-//        GildedRose app = new GildedRose(items);
-//        assertThrows(IllegalStateException.class, app::updateQuality);
-//    }
+    @Test
+    void updateQuality_SulfurasNotAt80_throwsException() {
+        Item[] items = new Item[] {SULFURAS_79};
+        GildedRose app = new GildedRose(items);
+        assertThrows(IllegalStateException.class, app::updateQuality);
+    }
 
     @Test
     void updateQuality_BackstagePassesWithLowUrgency_qualityIncreasesOf1() {

@@ -12,7 +12,7 @@ class GildedRose {
     }
 
     private void update(Item item) {
-        updaterFactory.forName(item.name).update(item);
+        updaterFactory.forItem(item).update(item);
     }
 
     public void updateQuality() {
