@@ -10,8 +10,8 @@ public abstract class Updater {
         this.itemName = itemName;
     }
 
-    public boolean matches(String name) {
-        return itemName.equals(name);
+    public boolean matches(Item item) {
+        return itemName.equals(item.name);
     }
 
     public abstract void update(Item item);

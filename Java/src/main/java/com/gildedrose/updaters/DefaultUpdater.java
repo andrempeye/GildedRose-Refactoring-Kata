@@ -8,7 +8,7 @@ public class DefaultUpdater extends Updater {
         super(null);
     }
     @Override
-    public boolean matches(String name) {
+    public boolean matches(Item item) {
         return false;
     }
 

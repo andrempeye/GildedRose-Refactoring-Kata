@@ -23,6 +23,6 @@ public class UpdaterFactory {
         updaters.add(new ConjuredUpdater());
     }
     public Updater forItem(Item item) {
-        return updaters.stream().filter(u -> u.matches(item.name)).findAny().orElse(defaultUpdater);
+        return updaters.stream().filter(u -> u.matches(item)).findAny().orElse(defaultUpdater);
     }
 }
