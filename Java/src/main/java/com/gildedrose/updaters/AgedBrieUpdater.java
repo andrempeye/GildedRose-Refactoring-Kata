@@ -2,14 +2,12 @@ package com.gildedrose.updaters;
 
 import com.gildedrose.Item;
 
-public class AgedBrieUpdater implements Updater {
+public class AgedBrieUpdater extends Updater {
 
-    public static final String AGED_BRIE = "Aged Brie";
     private static final int MAX_QUALITY = 50;
 
-    @Override
-    public boolean matches(String name) {
-        return AGED_BRIE.equals(name);
+    public AgedBrieUpdater() {
+        super("Aged Brie");
     }
 
     @Override

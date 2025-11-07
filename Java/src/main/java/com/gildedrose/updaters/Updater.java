@@ -2,8 +2,17 @@ package com.gildedrose.updaters;
 
 import com.gildedrose.Item;
 
-public interface Updater {
+public abstract class Updater {
 
-    boolean matches(String name);
-    void update(Item item);
+    private final String itemName;
+
+    protected Updater(String itemName) {
+        this.itemName = itemName;
+    }
+
+    public boolean matches(String name) {
+        return itemName.equals(name);
+    }
+
+    public abstract void update(Item item);
 }

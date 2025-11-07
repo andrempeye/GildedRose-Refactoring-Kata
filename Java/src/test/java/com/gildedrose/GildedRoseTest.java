@@ -3,6 +3,7 @@ package com.gildedrose;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class GildedRoseTest {
 
@@ -12,11 +13,13 @@ class GildedRoseTest {
     Item AGED_BRIE = new Item("Aged Brie", 5, 10);
     Item AGED_BRIE_MAX_QUALITY = new Item("Aged Brie", 5, 50);
     Item SULFURAS = new Item("Sulfuras, Hand of Ragnaros", 0, 80);
+    Item SULFURAS_79 = new Item("Sulfuras, Hand of Ragnaros", 0, 79);
     Item BACKSTAGE_PASSES_LOW_URGENCY = new Item("Backstage passes to a TAFKAL80ETC concert", 11, 10);
     Item BACKSTAGE_PASSES_HIGH_URGENCY = new Item("Backstage passes to a TAFKAL80ETC concert", 6, 10);
     Item BACKSTAGE_PASSES_CRITICAL_URGENCY = new Item("Backstage passes to a TAFKAL80ETC concert", 4, 10);
     Item BACKSTAGE_PASSES_EXPIRED = new Item("Backstage passes to a TAFKAL80ETC concert", 0, 10);
     Item CONJURED = new Item("Conjured", 5, 10);
+    Item CONJURED_EXPIRED = new Item("Conjured", -1, 10);
 
     @Test
     void updateQuality_defaultBehavior_decrementsQualityAndSellInOf1() {
@@ -79,6 +82,13 @@ class GildedRoseTest {
     }
 
     @Test
+    void updateQuality_SulfurasNotAt80_throwsException() {
+        Item[] items = new Item[] {SULFURAS_79};
+        GildedRose app = new GildedRose(items);
+        assertThrows(IllegalStateException.class, app::updateQuality);
+    }
+
+    @Test
     void updateQuality_BackstagePassesWithLowUrgency_qualityIncreasesOf1() {
         Item[] items = new Item[] {BACKSTAGE_PASSES_LOW_URGENCY};
         GildedRose app = new GildedRose(items);
@@ -118,14 +128,24 @@ class GildedRoseTest {
         assertEquals(0, app.items[0].quality);
     }
 
-//    @Test
-//    void updateQuality_Conjured_qualityDecreasesOf2() {
-//        Item[] items = new Item[] {CONJURED};
-//        GildedRose app = new GildedRose(items);
-//        app.updateQuality();
-//        assertEquals("Conjured", app.items[0].name);
-//        assertEquals(4, app.items[0].sellIn);
-//        assertEquals(8, app.items[0].quality);
-//    }
+    @Test
+    void updateQuality_Conjured_qualityDecreasesOf2() {
+        Item[] items = new Item[] {CONJURED};
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals("Conjured", app.items[0].name);
+        assertEquals(4, app.items[0].sellIn);
+        assertEquals(8, app.items[0].quality);
+    }
+
+    @Test
+    void updateQuality_ConjuredAndExpired_qualityDecreasesOf4() {
+        Item[] items = new Item[] {CONJURED_EXPIRED};
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals("Conjured", app.items[0].name);
+        assertEquals(-2, app.items[0].sellIn);
+        assertEquals(6, app.items[0].quality);
+    }
 
 }

@@ -2,7 +2,11 @@ package com.gildedrose.updaters;
 
 import com.gildedrose.Item;
 
-public class DefaultUpdater implements Updater {
+public class DefaultUpdater extends Updater {
+
+    public DefaultUpdater() {
+        super(null);
+    }
     @Override
     public boolean matches(String name) {
         return false;
