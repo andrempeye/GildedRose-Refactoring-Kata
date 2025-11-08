@@ -4,15 +4,15 @@ import java.util.Arrays;
 
 class GildedRose {
     Item[] items;
-    private final UpdaterFactory updaterFactory;
+    private final UpdaterStrategy updaterStrategy;
 
     public GildedRose(Item[] items) {
-        updaterFactory = new UpdaterFactory();
+        updaterStrategy = new UpdaterStrategy();
         this.items = items;
     }
 
     private void update(Item item) {
-        updaterFactory.forItem(item).update(item);
+        updaterStrategy.forItem(item).update(item);
     }
 
     public void updateQuality() {

@@ -10,12 +10,12 @@ import com.gildedrose.updaters.Updater;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UpdaterFactory {
+public class UpdaterStrategy {
 
     private final List<Updater> updaters = new ArrayList<>();
     private final Updater defaultUpdater;
 
-    public UpdaterFactory() {
+    public UpdaterStrategy() {
         defaultUpdater = new DefaultUpdater();
         updaters.add(new AgedBrieUpdater());
         updaters.add(new SulfurasUpdater());
